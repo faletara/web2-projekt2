@@ -10,7 +10,7 @@ html(lang='hr')
     h2 SQL umetanje (SQL Injection)
     p
       b Upute:
-      |  Upišite korisničko ime (npr. ana) za pretraživanje korisnika. Kad je ranjivost uključena, upišite #[mark #[b ' OR 1=1 --]] i upit će vratiti sve korisnike zajedno s lozinkama. Kad je isključena, isti unos ne vraća ništa.
+      |  Upišite korisničko ime (npr. ana) za pretraživanje korisnika. Kad je ranjivost uključena, upišite #[mark #[b ' OR 'a'='a' --]] i upit će vratiti sve korisnike zajedno s lozinkama. Kad je isključena, isti unos ne vraća ništa. Klasični ' OR 1=1 -- ovdje ne prolazi jer ga Render blokira.
 
     form(method='get', action='/sql-injection')
       p
