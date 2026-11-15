@@ -1,0 +1,39 @@
+doctype html
+html(lang='hr')
+  head
+    meta(charset='utf-8')
+    meta(name='viewport', content='width=device-width, initial-scale=1')
+    title CSRF
+  body
+    p
+      a(href='/') ← Drugi projekt
+    h2 Lažiranje zahtjeva na drugom sjedištu (CSRF)
+    p
+      b Upute:
+      |  Zapamtite stanje računa i dok je ranjivost uključena otvorite u istom pregledniku #[a(href='https://ATTACKER_URL', target='_blank') napadačevu stranicu]. Ona je na drugoj domeni i sama pošalje skriveni obrazac koji prebaci 100 € napadaču, pa vas vrati ovdje i vidi se da je stanje manje. Kad se ranjivost isključi, isti napad ne prolazi jer obrazac ima skriveni CSRF token koji napadač ne zna. Sa checkboxom se ranjivost uključi ili isključi.
+
+    p
+      | Prijavljeni ste kao #[b= account.username] (IBAN #{account.iban})
+    form(method='post', action='/csrf/logout')
+      button(type='submit') Odjava
+
+    form(method='post', action='/csrf/toggle')
+      if !csrfVulnerable
+        input(type='hidden', name='csrfToken', value=csrfToken)
+      label
+        input(type='checkbox', name='vulnerable', checked=csrfVulnerable, onchange='this.form.submit()')
+        |  Ranjivost uključena
+
+    h3 Stanje računa: #{account.balance} €
+
+    h3 Prebaci novac
+    form(method='post', action='/csrf/transfer')
+      if !csrfVulnerable
+        input(type='hidden', name='csrfToken', value=csrfToken)
+      p
+        label(for='iban') IBAN primatelja:
+        input#iban(type='text', name='iban', size='26')
+      p
+        label(for='amount') Iznos (€):
+        input#amount(type='number', name='amount', min='0.01', step='0.01')
+      button(type='submit') Prebaci

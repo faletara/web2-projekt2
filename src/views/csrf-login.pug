@@ -1,0 +1,25 @@
+doctype html
+html(lang='hr')
+  head
+    meta(charset='utf-8')
+    meta(name='viewport', content='width=device-width, initial-scale=1')
+    title Prijava – CSRF
+  body
+    p
+      a(href='/') ← Drugi projekt
+    h2 Lažiranje zahtjeva na drugom sjedištu (CSRF)
+    h3 Prijava u banku
+    p
+      | Testni korisnici: ana / ana123, ivan / ivan123, napadac / napadac123
+
+    if error
+      p(style='color: red')= error
+
+    form(method='post', action='/csrf/login')
+      p
+        label(for='username') Korisničko ime:
+        input#username(type='text', name='username', value=username)
+      p
+        label(for='password') Lozinka:
+        input#password(type='password', name='password')
+      button(type='submit') Prijava

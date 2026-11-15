@@ -1,0 +1,41 @@
+doctype html
+html(lang='hr')
+  head
+    meta(charset='utf-8')
+    meta(name='viewport', content='width=device-width, initial-scale=1')
+    title SQL umetanje
+  body
+    p
+      a(href='/') ← Drugi projekt
+    h2 SQL umetanje (SQL Injection)
+    p
+      b Upute:
+      |  Upišite korisničko ime (npr. ana) za pretraživanje korisnika. Kad je ranjivost uključena, upišite #[mark #[b ' OR 1=1 --]] i upit će vratiti sve korisnike zajedno s lozinkama. Kad je isključena, isti unos ne vraća ništa.
+
+    form(method='get', action='/sql-injection')
+      p
+        label
+          input(type='checkbox', name='vulnerable', checked=vulnerable)
+          |  Ranjivost uključena
+      p
+        label(for='username') Korisničko ime:
+        input#username(type='text', name='username', value=username)
+      button(type='submit') Pretraži
+
+    if searched
+      h3 Rezultati
+      if error
+        p(style='color: red') Greška u SQL upitu: #{error}
+      else if users.length === 0
+        p Nema rezultata.
+      else
+        table(border='1', cellpadding='4')
+          tr
+            th id
+            th username
+            th password
+          each user in users
+            tr
+              td= user.id
+              td= user.username
+              td= user.password

