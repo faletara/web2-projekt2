@@ -74,7 +74,11 @@ router.post('/transfer', async (req, res) => {
     return
   }
 
-  await transfer(account.id, req.body.iban, req.body.amount)
+  if (!await transfer(account.id, req.body.iban, req.body.amount)) {
+    res.status(400).send('Neispravan IBAN ili iznos')
+    return
+  }
+
   res.redirect('/csrf')
 })
 

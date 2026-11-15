@@ -59,7 +59,13 @@ export async function getAccount(id: number): Promise<Account | undefined> {
   return result.rows[0]
 }
 
-export async function transfer(senderId: number, recipientIban: string, amount: string) {
+export async function transfer(senderId: number, recipientIban: string, amount: string): Promise<boolean> {
+  const result = await pool.query(
+    'UPDATE users SET balance = balance + $2::numeric WHERE iban = $1 AND $2::numeric > 0',
+    [recipientIban, amount]
+  )
+  if (result.rowCount === 0) return false
+
   await pool.query('UPDATE users SET balance = balance - $2 WHERE id = $1', [senderId, amount])
-  await pool.query('UPDATE users SET balance = balance + $2 WHERE iban = $1', [recipientIban, amount])
+  return true
 }
