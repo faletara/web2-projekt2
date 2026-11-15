@@ -10,7 +10,7 @@ html(lang='hr')
     h2 Lažiranje zahtjeva na drugom sjedištu (CSRF)
     p
       b Upute:
-      |  Zapamtite stanje računa i dok je ranjivost uključena otvorite u istom pregledniku #[a(href='https://ATTACKER_URL', target='_blank') napadačevu stranicu]. Ona je na drugoj domeni i sama pošalje skriveni obrazac koji prebaci 100 € napadaču, pa vas vrati ovdje i vidi se da je stanje manje. Kad se ranjivost isključi, isti napad ne prolazi jer obrazac ima skriveni CSRF token koji napadač ne zna. Sa checkboxom se ranjivost uključi ili isključi.
+      |  Zapamtite stanje računa i dok je ranjivost uključena otvorite u istom pregledniku #[a(href='https://web2-projekt2-attacker.onrender.com', target='_blank') napadačevu stranicu]. Ona je na drugoj domeni i sama pošalje skriveni obrazac koji prebaci 100 € napadaču, pa vas vrati ovdje i vidi se da je stanje manje. Kad se ranjivost isključi, isti napad ne prolazi jer obrazac ima skriveni CSRF token koji napadač ne zna. Sa checkboxom se ranjivost uključi ili isključi.
 
     p
       | Prijavljeni ste kao #[b= account.username] (IBAN #{account.iban})
