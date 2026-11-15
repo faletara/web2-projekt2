@@ -12,6 +12,6 @@ CREATE TABLE users (
 INSERT INTO
     users (username, password, balance, iban)
 VALUES
-    ('ana', 'ana123', 100.00, 'HR1210010051863000160'),
-    ('ivan', 'ivan123', 150.00, 'HR1210010051863000161'),
+    ('ana', 'ana123', 10000.00, 'HR1210010051863000160'),
+    ('ivan', 'ivan123', 10000.00, 'HR1210010051863000161'),
     ('napadac', 'napadac123', 250.00, 'HR1210010051863000162');
