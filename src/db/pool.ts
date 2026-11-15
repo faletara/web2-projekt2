@@ -29,6 +29,7 @@ export async function getUsersUnsafe(username: string): Promise<User[]> {
   const result = await pool.query<User>(
     "SELECT id, username, password FROM users WHERE username = '" + username + "'"
   )
+  
   return result.rows
 }
 
